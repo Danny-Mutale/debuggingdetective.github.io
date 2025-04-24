@@ -1,0 +1,137 @@
+/* General styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("../IMAGES/bg1.jpg");
+    background-position: center;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styling */
+header {
+    font-family: "Bungee Spice";
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Header logo size */
+img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Main container */
+.main-container {
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    min-height: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Page title */
+h2 {
+    text-align: center;
+    color: #333;
+    margin: 20px 0;
+}
+
+/* Language selection form */
+#pregame-selection {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    flex: 1;
+    align-items: center;
+}
+
+#languageForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+#languageForm label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+#languageForm input[type="radio"] {
+    width: 20px;
+    height: 20px;
+}
+
+/* Button styling */
+button {
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    color: #333;
+    border-top: 1px solid #ddd;
+    margin-top: auto;
+}
+
+/* Error message */
+.error-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff4444;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 80%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+} 

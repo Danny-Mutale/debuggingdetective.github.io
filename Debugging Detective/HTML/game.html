@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debugging Detective - Game</title>
+  <link rel="stylesheet" href="../CSS/game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Error message container -->
+  <div id="error-message" style="display: none;"></div>
+  
+  <div class="main-container">
+    <div class="game-container">
+      <div class="case-info">
+        <h2 id="case-title"></h2>
+        <p id="case-description"></p>
+      </div>
+      
+      <div class="navigation-buttons">
+        <button id="prev-case">Previous Case</button>
+        <button id="next-case">Next Case</button>
+      </div>
+      
+      <div class="file-tabs" id="file-tabs">
+        <button class="active">HTML</button>
+        <button>CSS</button>
+        <button>JavaScript</button>
+      </div>
+      
+      <div class="code-container">
+        <textarea id="code-area" spellcheck="false"></textarea>
+      </div>
+      
+      <div class="action-buttons">
+        <button id="submit-btn">Submit Fix</button>
+        <button id="reset-btn">Reset Code</button>
+        <button id="hint-btn">Hint</button>
+      </div>
+      
+      <div class="console-message">
+        <p id="console-message"></p>
+      </div>
+      
+      <div class="results-container">
+        <h3>Results</h3>
+        <div id="results-content"></div>
+      </div>
+      
+      <button id="exit-btn">Exit Game</button>
+    </div>
+  </div>
+  
+  <script type="module" src="../JAVASCRIPT/game.js"></script>
+</body>
+</html>
