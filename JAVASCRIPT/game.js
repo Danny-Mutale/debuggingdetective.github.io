@@ -1,15 +1,9 @@
-/*
- * Maze Escape Game
- * A web-based coding challenge game that helps users learn HTML, CSS, and JavaScript
- * through interactive coding exercises.
- */
-
-// Import solution checks
+// Imports solution checks
 import htmlChecks from './solutionChecks/htmlChecks.js';
 import cssChecks from './solutionChecks/cssChecks.js';
 import jsChecks from './solutionChecks/jsChecks.js';
 
-// Define solution check functions for each case
+// Defines solution check functions for each case
 const solutionChecks = {
     html: htmlChecks,
     css: cssChecks,
@@ -19,7 +13,7 @@ const solutionChecks = {
 // Get language from URL parameters
 const language = new URLSearchParams(window.location.search).get('language') || 'html';
 
-// Cases data
+// Cases questions
 const cases = {
   "html": [
     {
@@ -129,13 +123,8 @@ const domElements = {
     resultsContent: document.getElementById('results-content')
 };
 
-/**
- * Creates a message template for displaying feedback to the user
- * @param {string} type - Type of message (success, error, hint)
- * @param {string} title - Message title
- * @param {string} content - Message content
- * @returns {string} HTML string for the message
- */
+// Creates a message template for displaying feedback to the user
+
 function createMessage(type, title, content) {
     return `
         <div class="message ${type}-message">
@@ -168,10 +157,7 @@ function handleButtonClick(buttonId) {
     }
   }
   
-/**
- * Updates the UI with current case information
- * Sets up the code editor and file tabs
- */
+//Updates the UI with current case information and sets up the code editor and file tabs
 function updateUI() {
     try {
         // Update case information
@@ -191,10 +177,7 @@ function updateUI() {
     }
 }
 
-/**
- * Switches between different file types (HTML, CSS, JS)
- * @param {string} file - File type to switch to
- */
+//Switches between different file types (HTML, CSS, JS)
 function switchFile(file) {
     try {
         currentFile = file;
@@ -205,9 +188,7 @@ function switchFile(file) {
     }
 }
 
-/**
- * Applies changes from the code editor to the current file
- */
+//Applies changes from the code editor to the current file
 function applyChanges() {
     try {
         code[currentFile] = domElements.codeArea.value;
@@ -216,10 +197,8 @@ function applyChanges() {
     }
 }
 
-/**
- * Checks if the current solution is correct
- * @returns {boolean} True if solution is correct, false otherwise
- */
+//Checks if the current solution is correct
+ 
 function checkSolution() {
     const currentCode = domElements.codeArea.value.trim();
     const checks = {
@@ -230,9 +209,7 @@ function checkSolution() {
     return checks[currentFile] ? checks[currentFile]() : false;
 }
 
-/**
- * Shows or hides the hint for the current case
- */
+// Shows or hides the hint for the current case
 function showHint() {
     const consoleMessage = domElements.consoleMessage;
     consoleMessage.style.display = consoleMessage.style.display === 'block' ? 'none' : 'block';
@@ -241,10 +218,7 @@ function showHint() {
     }
 }
 
-/**
- * Submits the current solution for checking
- * Provides feedback based on whether the solution is correct
- */
+// Submits the current solution for checking and provides feedback based on whether the solution is correct
 function submitFix() {
     try {
         if (isCaseSolved) return;
@@ -297,9 +271,7 @@ function getPropertyDescription(property, value) {
   return descriptions[property] || 'applies the specified styling to the element.';
 }
 
-/**
- * Resets the code to its initial state
- */
+// Resets the code to its initial state
 function resetCode() {
     try {
         code = { ...initialCode };
@@ -316,9 +288,7 @@ function setViewport(mode) {
   // Remove this function as it's no longer needed
 }
 
-/**
- * Initializes the game with the first case
- */
+// Initializes the game with the first case
 function initializeGame() {
     try {
         currentCase = cases[language][currentCaseIndex];
@@ -330,10 +300,8 @@ function initializeGame() {
     }
 }
 
-/**
- * Navigates between cases
- * @param {string} direction - 'next' or 'prev' to move between cases
- */
+// Navigates between cases
+
 function navigateCase(direction) {
     try {
         const newIndex = currentCaseIndex + (direction === 'next' ? 1 : -1);
@@ -353,9 +321,7 @@ function navigateCase(direction) {
     }
 }
 
-/**
- * Exits the game and returns to the main menu
- */
+// Exits the game and returns to the main menu
 function exitGame() {
     window.location.href = 'index.html';
 }
