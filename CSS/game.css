@@ -1,19 +1,4 @@
-/* 
- * Maze Escape Game - CSS Styles
- * This file contains all the styles for the game interface
- * 
- * Table of Contents:
- * 1. Basic Setup
- * 2. Main Layout
- * 3. Game Components
- * 4. Buttons
- * 5. Messages and Results
- * 6. Responsive Design
- */
 
-/* =====================
-   1. Basic Setup
-   ===================== */
 /* These are the basic styles that apply to the whole page */
 body {
     margin: 0;
@@ -28,9 +13,6 @@ body {
     flex-direction: column;
 }
 
-/* =====================
-   2. Main Layout
-   ===================== */
 /* The main container holds everything in the game */
 .main-container {
     width: 95%;
@@ -48,7 +30,7 @@ body {
     box-sizing: border-box;
 }
 
-/* The game container holds the actual game content */
+/* The game container holds the game content */
 .game-container {
     width: 100%;
     max-width: 1200px;
@@ -64,9 +46,6 @@ body {
     gap: 10px;
 }
 
-/* =====================
-   3. Game Components
-   ===================== */
 /* Case information shows the current challenge */
 .case-info {
     background-color: #fff;
@@ -118,9 +97,6 @@ body {
     white-space: nowrap;
 }
 
-/* =====================
-   4. Buttons
-   ===================== */
 /* Common button styles */
 button {
     padding: 6px 12px;
@@ -200,9 +176,6 @@ button:hover {
     background-color: #444;
 }
 
-/* =====================
-   5. Messages and Results
-   ===================== */
 /* Results display area */
 .results-container {
     background-color: #fff;
@@ -270,9 +243,7 @@ button:hover {
     margin-bottom: 5px;
 }
 
-/* =====================
-   6. Responsive Design
-   ===================== */
+
 /* Adjust layout for smaller screens */
 @media (max-width: 768px) {
     .game-container {
