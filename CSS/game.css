@@ -3,7 +3,7 @@
 
 /* Game-specific container overrides */
 .main-container {
-    width: 95%;
+    width: 100%;
     height: auto;
     margin: 10px auto;
     padding: 10px;
@@ -11,7 +11,7 @@
 
 /* The game container holds the game content */
 .game-container {
-    width: 100%;
+    width: 95%;
     max-width: 1200px;
     height: auto;
     margin: 0 auto;
