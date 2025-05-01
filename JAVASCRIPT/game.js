@@ -1,9 +1,9 @@
-// Imports solution checks
+// Import solution checks
 import htmlChecks from './solutionChecks/htmlChecks.js';
 import cssChecks from './solutionChecks/cssChecks.js';
 import jsChecks from './solutionChecks/jsChecks.js';
 
-// Defines solution check functions for each case
+// Solution check functions for each case
 const solutionChecks = {
     html: htmlChecks,
     css: cssChecks,
@@ -13,7 +13,7 @@ const solutionChecks = {
 // Get language from URL parameters
 const language = new URLSearchParams(window.location.search).get('language') || 'html';
 
-// Cases questions
+// Cases data
 const cases = {
   "html": [
     {
@@ -49,8 +49,8 @@ const cases = {
       "title": "Case 1: Make Text Big",
       "description": "Make the text bigger by setting its font size to 24px.",
       "html": "<div class=\"text-box\">\n  <p class=\"big\">This text needs to be bigger</p>\n</div>",
-      "css": ".big {\n\n}",
-      "correctCss": ".big {\n  font-size: 24px;\n}",
+      "css": "",
+      "correctCss": "font-size: 24px;",
       "js": "",
       "consoleMessage": "CSS Error: Add font-size: 24px to make the text bigger"
     },
@@ -58,8 +58,8 @@ const cases = {
       "title": "Case 2: Make Text Red",
       "description": "Make the text red by setting its color property.",
       "html": "<div class=\"text-box\">\n  <p class=\"red\">This text needs to be red</p>\n</div>",
-      "css": ".red {\n\n}",
-      "correctCss": ".red {\n  color: red;\n}",
+      "css": "",
+      "correctCss": "color: red;",
       "js": "",
       "consoleMessage": "CSS Error: Add color: red to make the text red"
     },
@@ -67,39 +67,39 @@ const cases = {
       "title": "Case 3: Make Text Bold",
       "description": "Make the text bold by setting its font weight.",
       "html": "<div class=\"text-box\">\n  <p class=\"bold\">This text needs to be bold</p>\n</div>",
-      "css": ".bold {\n\n}",
-      "correctCss": ".bold {\n  font-weight: bold;\n}",
+      "css": "",
+      "correctCss": "font-weight: bold;",
       "js": "",
       "consoleMessage": "CSS Error: Add font-weight: bold to make the text bold"
     }
   ],
   "js": [
     {
-      "title": "Case 1: Show Message",
-      "description": "Make a button show a message.",
-      "html": "<button id=\"btn\">Click Me</button>",
+      "title": "Case 1: Show Alert",
+      "description": "Write code to show an alert that says 'Hello!'",
+      "html": "<button onclick='showAlert()'>Click Me</button>",
+      "js": "",
+      "correctJs": "alert('Hello!');",
       "css": "",
-      "js": "const button = document.getElementById('btn');",
-      "correctJs": "const button = document.getElementById('btn');\nbutton.onclick = function() {\n  alert('Hello!');\n};",
-      "consoleMessage": "JavaScript Error: Add onclick to show alert"
+      "consoleMessage": "JavaScript Error: Add alert('Hello!');"
     },
     {
       "title": "Case 2: Change Text",
-      "description": "Make a button change text.",
-      "html": "<button id=\"btn\">Click Me</button>\n<p id=\"text\">Old Text</p>",
+      "description": "Write code to change the text to 'Hello!'",
+      "html": "<p id='text'>Change this text</p>",
+      "js": "",
+      "correctJs": "document.getElementById('text').textContent = 'Hello!';",
       "css": "",
-      "js": "const button = document.getElementById('btn');\nconst text = document.getElementById('text');",
-      "correctJs": "const button = document.getElementById('btn');\nconst text = document.getElementById('text');\nbutton.onclick = function() {\n  text.innerHTML = 'New Text';\n};",
-      "consoleMessage": "JavaScript Error: Add onclick to change text"
+      "consoleMessage": "JavaScript Error: Use getElementById and textContent"
     },
     {
       "title": "Case 3: Add Numbers",
-      "description": "Add 2 + 2.",
-      "html": "<p id=\"result\"></p>",
+      "description": "Write code to show the sum of 5 + 10",
+      "html": "<p id='result'>The answer is: </p>",
+      "js": "",
+      "correctJs": "document.getElementById('result').textContent = 5 + 10;",
       "css": "",
-      "js": "const result = document.getElementById('result');",
-      "correctJs": "const result = document.getElementById('result');\nresult.innerHTML = 2 + 2;",
-      "consoleMessage": "JavaScript Error: Add numbers and show result"
+      "consoleMessage": "JavaScript Error: Add 5 + 10 and show in the paragraph"
     }
   ]
 };
@@ -107,8 +107,8 @@ const cases = {
 // Game state variables
 let currentFile = 'html';  // Current active file type
 let code = {};            // Stores the current code for each file type
-let initialCode = {};     // Stores the initial code state
-let currentCase;          // Current case being solved
+let initialCode = {};     // Stores the initial code
+let currentCase;          // Case being solved
 let currentCaseIndex = 0; // Index of current case
 let isCaseSolved = false; // Flag to track if current case is solved
 
@@ -123,8 +123,13 @@ const domElements = {
     resultsContent: document.getElementById('results-content')
 };
 
-// Creates a message template for displaying feedback to the user
-
+/**
+ * Creates a message template for displaying feedback to the user
+ * @param {string} type - Type of message (success, error, hint)
+ * @param {string} title - Message title
+ * @param {string} content - Message content
+ * @returns {string} HTML string for the message
+ */
 function createMessage(type, title, content) {
     return `
         <div class="message ${type}-message">
@@ -136,28 +141,20 @@ function createMessage(type, title, content) {
 
 // Handle button clicks
 function handleButtonClick(buttonId) {
-  try {
     switch(buttonId) {
-      case 'start-game':
-        window.location.href = 'pregame.html';
-        break;
-      case 'instructions':
-        // TODO: Implement instructions page
-        alert('Instructions coming soon!');
-        break;
-      case 'settings':
-        // TODO: Implement settings page
-        alert('Settings coming soon!');
-        break;
-      default:
-        console.warn(`Unknown button ID: ${buttonId}`);
+        case 'start-game':
+            window.location.href = 'pregame.html';
+            break;
+        case 'instructions':
+            window.location.href = 'instructions.html';
+            break;
+        default:
+            console.warn(`Unknown button ID: ${buttonId}`);
     }
-  } catch (error) {
-    handleError(error, 'Error handling button click');
-    }
-  }
+}
   
 //Updates the UI with current case information and sets up the code editor and file tabs
+
 function updateUI() {
     try {
         // Update case information
@@ -170,21 +167,10 @@ function updateUI() {
         
         // Set current file and update code area
         currentFile = language;
-        switchFile(currentFile);
+        domElements.codeArea.value = code[language];
         applyChanges();
     } catch (error) {
         handleError(error, 'Error updating UI');
-    }
-}
-
-//Switches between different file types (HTML, CSS, JS)
-function switchFile(file) {
-    try {
-        currentFile = file;
-        domElements.codeArea.value = code[file];
-        domElements.actionButtons.style.display = ['html', 'css', 'js'].includes(file) ? 'flex' : 'none';
-    } catch (error) {
-        handleError(error, 'Error switching file');
     }
 }
 
@@ -197,8 +183,10 @@ function applyChanges() {
     }
 }
 
-//Checks if the current solution is correct
- 
+/**
+ * Checks if the current solution is correct
+ * @returns {boolean} True if solution is correct, false otherwise
+ */
 function checkSolution() {
     const currentCode = domElements.codeArea.value.trim();
     const checks = {
@@ -209,7 +197,8 @@ function checkSolution() {
     return checks[currentFile] ? checks[currentFile]() : false;
 }
 
-// Shows or hides the hint for the current case
+//Shows or hides the hint for the current case
+
 function showHint() {
     const consoleMessage = domElements.consoleMessage;
     consoleMessage.style.display = consoleMessage.style.display === 'block' ? 'none' : 'block';
@@ -218,7 +207,8 @@ function showHint() {
     }
 }
 
-// Submits the current solution for checking and provides feedback based on whether the solution is correct
+//Submits the current solution for checking and provides feedback based on whether the solution is correct
+ 
 function submitFix() {
     try {
         if (isCaseSolved) return;
@@ -271,24 +261,20 @@ function getPropertyDescription(property, value) {
   return descriptions[property] || 'applies the specified styling to the element.';
 }
 
-// Resets the code to its initial state
+//Resets the code to its initial state
+
 function resetCode() {
     try {
-        code = { ...initialCode };
-        switchFile(currentFile);
-        domElements.resultsContent.textContent = '';
-        isCaseSolved = false;
+        code[currentFile] = initialCode[currentFile];
+        domElements.codeArea.value = initialCode[language];
+        applyChanges();
     } catch (error) {
         handleError(error, 'Error resetting code');
     }
 }
 
-// Viewport toggle
-function setViewport(mode) {
-  // Remove this function as it's no longer needed
-}
-
-// Initializes the game with the first case
+//Initialises the game with the first case
+ 
 function initializeGame() {
     try {
         currentCase = cases[language][currentCaseIndex];
@@ -300,8 +286,10 @@ function initializeGame() {
     }
 }
 
-// Navigates between cases
-
+/**
+ * Navigates between cases
+ * @param {string} direction - 'next' or 'prev' to move between cases
+ */
 function navigateCase(direction) {
     try {
         const newIndex = currentCaseIndex + (direction === 'next' ? 1 : -1);
@@ -322,15 +310,16 @@ function navigateCase(direction) {
 }
 
 // Exits the game and returns to the main menu
+
 function exitGame() {
     window.location.href = 'index.html';
 }
 
-// Initialize event listeners when the DOM is loaded
+// Initialise event listeners when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     try {
         // Add click handlers for main menu buttons
-        const buttons = ['start-game', 'instructions', 'settings'];
+        const buttons = ['start-game', 'instructions'];
         buttons.forEach(buttonId => {
             const button = document.getElementById(buttonId);
             if (button) {
@@ -338,11 +327,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Initialize game-specific functionality if on game page
+        // Initialise game-specific functionality on game page
         if (domElements.fileTabs) {
             domElements.fileTabs.addEventListener('click', (e) => {
                 if (e.target.tagName === 'BUTTON') {
-                    switchFile(e.target.textContent.toLowerCase());
+                    currentFile = e.target.textContent.toLowerCase();
+                    domElements.codeArea.value = code[currentFile];
                 }
             });
             
@@ -357,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('hint-btn').addEventListener('click', showHint);
             document.getElementById('exit-btn').addEventListener('click', exitGame);
             
-            // Initialize the game
+            // Initialise the game
             initializeGame();
         }
     } catch (error) {
@@ -368,5 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Error handling
 function handleError(error, message) {
     console.error(message, error);
-    domElements.resultsContent.innerHTML = createMessage('error', 'Error', `${message}: ${error.message}`);
+    if (domElements.resultsContent) {
+        domElements.resultsContent.innerHTML = createMessage('error', 'Error', message);
+    }
 }

@@ -1,33 +1,12 @@
+/* This file contains all the styles for the game interface*/
+@import 'common.css';
 
-/* These are the basic styles that apply to the whole page */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-image: url("../../IMAGES/bg1.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* The main container holds everything in the game */
+/* Game-specific container overrides */
 .main-container {
     width: 95%;
-    max-width: 1200px;
     height: auto;
-    min-height: 600px;
     margin: 10px auto;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
 }
 
 /* The game container holds the game content */
@@ -42,7 +21,6 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     gap: 10px;
 }
 
@@ -53,7 +31,6 @@ body {
     border-radius: 8px;
     margin-bottom: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
 }
 
 .case-title {
@@ -79,8 +56,6 @@ body {
     height: 150px;
     display: flex;
     flex-direction: column;
-    max-width: 100%;
-    overflow: hidden;
 }
 
 #code-area {
@@ -97,83 +72,33 @@ body {
     white-space: nowrap;
 }
 
-/* Common button styles */
-button {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+/* Game-specific button overrides */
+.game-container button {
+    padding: 8px 16px;
+    width: auto;
     font-size: 14px;
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
-    color: white;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
-/* Navigation buttons (Previous/Next) */
-.nav-btn {
-    background-color: #4CAF50; /* Green */
-    color: white;
-}
-
-.nav-btn:hover {
-    background-color: #45a049;
 }
 
 /* Action buttons */
-#submit-btn {
-    background-color: #4CAF50; /* Green */
-}
+.nav-btn,
+#submit-btn { background-color: #4CAF50; }
+#reset-btn, 
+#exit-btn { background-color: #f44336; }
+#hint-btn { background-color: #2196F3; }
 
-#reset-btn {
-    background-color: #f44336; /* Red */
-}
-
-#hint-btn {
-    background-color: #2196F3; /* Blue */
-}
-
+/* Exit button specific */
 #exit-btn {
-    background-color: #f44336; /* Red */
     margin: 10px auto;
-    padding: 8px 16px;
-    font-size: 14px;
-    width: auto;
+    min-width: 120px;
 }
 
 /* Button containers */
 .navigation-buttons,
-.action-buttons,
-.file-tabs {
+.action-buttons {
     display: flex;
     gap: 5px;
     margin: 5px 0;
     padding: 0 5px;
-    flex-shrink: 0;
-}
-
-.file-tabs {
-    display: none;
-}
-
-.file-tabs span {
-    padding: 6px 12px;
-    background-color: #333;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.file-tabs span.active {
-    background-color: #4CAF50;
-}
-
-.file-tabs span:hover:not(.active) {
-    background-color: #444;
 }
 
 /* Results display area */
@@ -194,13 +119,11 @@ button:hover {
     line-height: 1.4;
     color: #666;
     padding: 4px;
-    max-height: none;
-    overflow-y: auto;
     word-wrap: break-word;
     white-space: normal;
 }
 
-/* Different types of messages */
+/* Message styles */
 .message {
     padding: 6px;
     border-radius: 4px;
@@ -210,28 +133,29 @@ button:hover {
     position: relative;
 }
 
-.message .close-btn {
-    display: none;
-}
-
+/* Success message */
 .success-message {
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
 }
 
-.error-message {
+/* Error and Empty input messages */
+.error-message,
+.empty-input-message {
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
 
+/* Hint message */
 .hint-message {
     background-color: #fff3cd;
     color: #856404;
     border: 1px solid #ffeeba;
 }
 
+/* Console message */
 .console-message {
     background-color: #f8f9fa;
     border-left: 4px solid #2196F3;
@@ -241,66 +165,6 @@ button:hover {
 .results-container h3 {
     margin-top: 0;
     margin-bottom: 5px;
-}
-
-
-/* Adjust layout for smaller screens */
-@media (max-width: 768px) {
-    .game-container {
-        padding: 5px;
-    }
-    
-    .case-title {
-        font-size: 18px;
-    }
-    
-    .navigation-buttons {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .action-buttons {
-        flex-wrap: wrap;
-    }
-    
-    .file-tabs, .action-buttons {
-        padding: 0 5px;
-    }
-    
-    button {
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-}
-
-/* Empty input message */
-.empty-input-message {
-    color: #FF9800;
-    font-weight: bold;
-    margin-left: 10px;
-    display: inline-block;
-}
-
-/* Error message */
-.error-message {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ff4444;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    max-width: 80%;
-    text-align: center;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -20px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 .navigation-buttons {
@@ -322,4 +186,26 @@ button:hover {
 
 .navigation-buttons button:hover {
     background-color: #45a049;
+}
+
+/* Button containers */
+.file-tabs {
+    display: none;
+}
+
+.file-tabs span {
+    padding: 6px 12px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.file-tabs span.active {
+    background-color: #4CAF50;
+}
+
+.file-tabs span:hover:not(.active) {
+    background-color: #444;
 } 

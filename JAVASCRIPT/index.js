@@ -1,10 +1,13 @@
-//loads the pregame page
-document.getElementById('start-game').addEventListener('click', () => {
-    window.location.href = 'pregame.html';
-});
+// Button click handlers
+document.addEventListener('DOMContentLoaded', () => {
+    // Start Game button
+    document.getElementById('start-game').addEventListener('click', () => {
+        window.location.href = 'pregame.html';
+    });
 
-//loads the instructions page
-document.getElementById('instructions').addEventListener('click', () => {
-    window.location.href = 'instructions.html';
+    // Instructions button
+    document.getElementById('instructions').addEventListener('click', () => {
+        window.location.href = 'instructions.html';
+    });
 });
 
